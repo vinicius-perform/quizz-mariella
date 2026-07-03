@@ -1,0 +1,703 @@
+/* ==========================================================================
+   DESIGN SYSTEM - QUIZ PREMIUM DRA. MARIELLA PALMEIRA
+   ========================================================================== */
+
+:root {
+    /* Cores */
+    --color-bg-dark: #09090A;
+    --color-card-dark: rgba(18, 18, 20, 0.7);
+    --color-card-hover: rgba(26, 26, 30, 0.9);
+    --color-accent-gold: #D4AF37; /* Dourado Champagne */
+    --color-accent-gold-hover: #E5C158;
+    --color-accent-gold-soft: #C5A059; /* Dourado Nude */
+    --color-text-light: #F5F5F7;
+    --color-text-muted: #9A9A9E;
+    --color-text-dark: #1C1C1E;
+    --color-border-gold: rgba(212, 175, 55, 0.18);
+    --color-border-gold-focus: rgba(212, 175, 55, 0.5);
+    
+    /* Tipografia */
+    --font-serif: 'Cinzel', Georgia, serif;
+    --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* Sombras e Efeitos */
+    --shadow-premium: 0 15px 45px rgba(0, 0, 0, 0.7);
+    --shadow-inner: inset 0 2px 4px rgba(255, 255, 255, 0.05);
+    --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --border-radius-premium: 8px;
+}
+
+/* ==========================================================================
+   RESET & CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
+/* Círculos decorativos de blur no fundo */
+.glow-bg-1 {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.035) 0%, rgba(0,0,0,0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.glow-bg-2 {
+    position: fixed;
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.03) 0%, rgba(0,0,0,0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   ESTRUTURA DE CONTAINER PRINCIPAL
+   ========================================================================== */
+
+.quiz-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-text-light);
+}
+
+.logo-subtitle {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    color: var(--color-accent-gold-soft);
+    margin-top: 0.3rem;
+}
+
+/* Layout de Duas Colunas (Desktop) */
+.quiz-main-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3.5rem;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   SIDEBAR LATERAL DE AUTORIDADE (MÉDICA)
+   ========================================================================== */
+
+.quiz-info-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar-photo-frame {
+    border: 1px solid var(--color-border-gold);
+    padding: 0.6rem;
+    background-color: rgba(18, 18, 20, 0.5);
+    box-shadow: var(--shadow-premium);
+    border-radius: var(--border-radius-premium);
+}
+
+.sidebar-doctor-img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--border-radius-premium) - 2px);
+    filter: brightness(0.9) contrast(1.05);
+}
+
+.sidebar-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-accent-gold);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-content p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+}
+
+.sidebar-credentials {
+    font-size: 0.72rem;
+    color: var(--color-accent-gold-soft);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   CARD DO QUIZ (GLASSMORPHISM)
+   ========================================================================== */
+
+.quiz-card-container {
+    width: 100%;
+}
+
+.quiz-premium-card {
+    background-color: var(--color-card-dark);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--color-border-gold);
+    box-shadow: var(--shadow-premium);
+    padding: 3rem 2.8rem;
+    border-radius: var(--border-radius-premium);
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.05), var(--color-accent-gold), rgba(212, 175, 55, 0.05));
+}
+
+/* Gerenciamento de Exibição das Etapas */
+.quiz-step {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.quiz-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Elementos Visuais das Etapas */
+.step-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--color-accent-gold-soft);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.2rem;
+}
+
+.quiz-title {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+}
+
+.quiz-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Lista de Bullets */
+.quiz-intro-bullets {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quiz-intro-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-weight: 300;
+}
+
+.bullet-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--color-accent-gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.clinical-alert {
+    color: #c9af9e !important;
+}
+
+.quiz-action-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.quiz-microtext {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    text-align: center;
+}
+
+/* ==========================================================================
+   COMPONENTES DE BOTÕES
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.1rem 2.2rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border-radius: var(--border-radius-premium);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--color-accent-gold);
+    color: #0b0b0c;
+    border: 1px solid var(--color-accent-gold);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent-gold-hover);
+    border-color: var(--color-accent-gold-hover);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-text-light);
+    border: 1px solid var(--color-border-gold);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-accent-gold);
+    color: #0b0b0c;
+    border-color: var(--color-accent-gold);
+}
+
+/* Animação de Brilho */
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 25%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(30deg);
+    animation: shine-animation 4s infinite ease-in-out;
+}
+
+@keyframes shine-animation {
+    0% {
+        left: -60%;
+    }
+    12%, 100% {
+        left: 130%;
+    }
+}
+
+/* ==========================================================================
+   FLUXO DE PERGUNTAS (BARRA DE PROGRESSO & OPÇÕES)
+   ========================================================================== */
+
+.quiz-progress-wrapper {
+    margin-bottom: 2.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 1.2rem;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 12.5%; /* preenchido por script js */
+    background: linear-gradient(90deg, var(--color-accent-gold-soft), var(--color-accent-gold));
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-text {
+    font-size: 0.75rem;
+    color: var(--color-accent-gold-soft);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.btn-back-step {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: var(--transition-smooth);
+    padding: 0.2rem 0.5rem;
+}
+
+.btn-back-step:hover {
+    color: var(--color-accent-gold-soft);
+}
+
+.btn-back-step svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* Pergunta e Opções */
+.question-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    line-height: 1.4;
+    margin-bottom: 1.8rem;
+    color: var(--color-text-light);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.option-button {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border-gold);
+    color: var(--color-text-light);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: left;
+    padding: 1.1rem 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border-radius: var(--border-radius-premium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option-button:hover {
+    background-color: var(--color-card-hover);
+    border-color: var(--color-accent-gold-soft);
+    padding-left: 1.8rem;
+}
+
+/* Indicador Circular Interno da Opção */
+.option-button::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+/* Estado Selecionado da Opção */
+.option-button.selected {
+    background-color: rgba(212, 175, 55, 0.06);
+    border-color: var(--color-accent-gold);
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.option-button.selected::after {
+    border-color: var(--color-accent-gold);
+    background-color: var(--color-accent-gold);
+    box-shadow: inset 0 0 0 3px #121214;
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE CAPTURA
+   ========================================================================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-accent-gold-soft);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.form-group input, 
+.form-group select {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border-gold);
+    color: var(--color-text-light);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 1.1rem;
+    border-radius: var(--border-radius-premium);
+    outline: none;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.form-group input::placeholder {
+    color: #555558;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-accent-gold);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.form-group select option {
+    background-color: #121214;
+    color: var(--color-text-light);
+}
+
+/* Mensagens de erro de validação */
+.error-message {
+    font-size: 0.75rem;
+    color: #c97f7f;
+    display: none;
+    margin-top: 0.3rem;
+}
+
+.form-group.has-error input,
+.form-group.has-error select {
+    border-color: #c97f7f;
+    background-color: rgba(201, 127, 127, 0.02);
+}
+
+.form-group.has-error .error-message {
+    display: block;
+}
+
+.form-submit-wrapper {
+    margin-top: 2rem;
+}
+
+/* ==========================================================================
+   TELA DE CARREGAMENTO & ERROR FALLBACK
+   ========================================================================== */
+
+.loading-spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.spinner-gold {
+    width: 55px;
+    height: 55px;
+    border: 3px solid rgba(212, 175, 55, 0.1);
+    border-top: 3px solid var(--color-accent-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.error-svg-icon {
+    width: 60px;
+    height: 60px;
+    fill: #c97f7f;
+}
+
+/* ==========================================================================
+   RODAPÉ MINIMALISTA
+   ========================================================================== */
+
+.quiz-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.quiz-footer p {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+}
+
+.footer-note {
+    font-size: 0.7rem !important;
+    color: #555558 !important;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+.footer-copyright {
+    font-size: 0.7rem !important;
+    color: #444446 !important;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVIDADE COMPLETA)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .quiz-main-layout {
+        gap: 2.5rem;
+    }
+    
+    .quiz-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-wrapper {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    
+    .quiz-main-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .quiz-info-sidebar {
+        display: none; /* Oculta sidebar no mobile para focar 100% no quiz */
+    }
+    
+    .quiz-premium-card {
+        padding: 2.2rem 1.5rem;
+    }
+    
+    .quiz-title {
+        font-size: 1.45rem;
+    }
+    
+    .question-title {
+        font-size: 1.2rem;
+    }
+    
+    .option-button {
+        padding: 1rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-title {
+        font-size: 1.3rem;
+    }
+    
+    .quiz-subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .option-button:hover {
+        padding-left: 1.2rem; /* remove recuo de hover em telas pequenas */
+    }
+}

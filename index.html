@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré-Avaliação Tratamento Glúteo | Dra. Mariella Palmeira</title>
+    <meta name="description" content="Responda ao quiz rápido de pré-avaliação para tratamento glúteo personalizado e entenda se este procedimento faz sentido para o seu caso.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background decorative blur elements -->
+    <div class="glow-bg-1"></div>
+    <div class="glow-bg-2"></div>
+
+    <div class="quiz-wrapper">
+        <!-- Logo e Cabeçalho Compacto -->
+        <header class="quiz-header">
+            <div class="logo">
+                <span class="logo-name">DRA. MARIELLA PALMEIRA</span>
+                <span class="logo-subtitle">MEDICINA ESTÉTICA</span>
+            </div>
+        </header>
+
+        <!-- Layout de Colunas (Card do Quiz + Bloco Lateral com Foto da Dra. Mariella no Desktop) -->
+        <main class="quiz-main-layout">
+            
+            <!-- Coluna Esquerda: Bloco Lateral de Autoridade (Oculto no mobile ou empilhado elegantemente) -->
+            <div class="quiz-info-sidebar">
+                <div class="sidebar-photo-frame">
+                    <img src="images/dra_mariella_hero.png" alt="Dra. Mariella Palmeira" class="sidebar-doctor-img">
+                </div>
+                <div class="sidebar-content">
+                    <h3>Filosofia de Tratamento</h3>
+                    <p>“O tratamento glúteo deve respeitar a anatomia, o bom senso estético e as particularidades de cada paciente para entregar um contorno natural e seguro.”</p>
+                    <span class="sidebar-credentials">Dra. Mariella Palmeira &bull; CRM/SP 123.456</span>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: O Card do Quiz (Dinâmico) -->
+            <div class="quiz-card-container">
+                <div class="quiz-premium-card" id="quiz-card">
+                    
+                    <!-- ==========================================
+                    ETAPA 0: CAPA INICIAL DO QUIZ
+                    ========================================== -->
+                    <div class="quiz-step active" id="step-0">
+                        <span class="step-tag">PRÉ-AVALIAÇÃO INICIAL</span>
+                        <h1 class="quiz-title">Descubra se faz sentido agendar uma avaliação para tratamento glúteo personalizado</h1>
+                        <p class="quiz-subtitle">
+                            Responda algumas perguntas rápidas para entendermos melhor suas queixas, expectativas e momento atual antes de direcionar você para a equipe da Dra. Mariella.
+                        </p>
+                        
+                        <ul class="quiz-intro-bullets">
+                            <li>
+                                <svg class="bullet-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Leve menos de 2 minutos</span>
+                            </li>
+                            <li>
+                                <svg class="bullet-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Ajuda a entender seu perfil inicial</span>
+                            </li>
+                            <li>
+                                <svg class="bullet-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Indicado para mulheres que buscam orientação médica individualizada</span>
+                            </li>
+                            <li>
+                                <svg class="bullet-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                <span class="clinical-alert">Não substitui uma avaliação médica presencial</span>
+                            </li>
+                        </ul>
+
+                        <div class="quiz-action-wrapper">
+                            <button onclick="startQuiz()" class="btn btn-primary btn-shine" id="btn-start-quiz">
+                                COMEÇAR PRÉ-AVALIAÇÃO
+                            </button>
+                            <p class="quiz-microtext">Suas respostas ajudam a equipe a entender melhor o seu caso antes do primeiro contato.</p>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                    ETAPAS DE PERGUNTAS (Passos 1 a 8)
+                    Serão controladas e geradas dinamicamente via script.js,
+                    mas a estrutura abaixo serve como esqueleto principal.
+                    ========================================== -->
+                    <div class="quiz-step" id="step-questions-container">
+                        <!-- Topo do Quiz: Progresso -->
+                        <div class="quiz-progress-wrapper">
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" id="progress-fill"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span class="progress-text" id="progress-text">Etapa 1 de 8</span>
+                                <button onclick="prevStep()" class="btn-back-step" id="btn-back">
+                                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                                    <span>Voltar</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta e Opções (Serão inseridas dinamicamente) -->
+                        <div id="dynamic-question-block">
+                            <h2 class="question-title" id="question-title">Qual é hoje o seu principal incômodo na região glútea?</h2>
+                            <div class="options-container" id="options-container">
+                                <!-- Botões de opções de resposta -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                    ETAPA 9: CAPTURA DE DADOS cadastrais
+                    ========================================== -->
+                    <div class="quiz-step" id="step-capture">
+                        <span class="step-tag">PASSO FINAL</span>
+                        <h2 class="quiz-title">Para finalizar sua pré-avaliação, preencha seus dados</h2>
+                        <p class="quiz-subtitle">Assim a equipe da Dra. Mariella poderá orientar você sobre o próximo passo com responsabilidade.</p>
+                        
+                        <form id="form-capture" onsubmit="submitQuiz(event)">
+                            <div class="form-group">
+                                <label for="input-nome">Nome Completo</label>
+                                <input type="text" id="input-nome" placeholder="Digite seu nome completo" required>
+                                <span class="error-message" id="error-nome">Por favor, preencha o seu nome.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-whatsapp">WhatsApp</label>
+                                <input type="tel" id="input-whatsapp" placeholder="(00) 00000-0000" required>
+                                <span class="error-message" id="error-whatsapp">Por favor, insira um WhatsApp válido com DDD.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-cidade">Cidade / UF</label>
+                                <input type="text" id="input-cidade" placeholder="Ex: São Paulo / SP" required>
+                                <span class="error-message" id="error-cidade">Por favor, preencha a sua cidade.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-horario">Melhor horário para contato (Opcional)</label>
+                                <select id="input-horario">
+                                    <option value="">Selecione um período...</option>
+                                    <option value="Manhã (08h às 12h)">Manhã (08h às 12h)</option>
+                                    <option value="Tarde (12h às 18h)">Tarde (12h às 18h)</option>
+                                    <option value="Noite (18h às 20h)">Noite (18h às 20h)</option>
+                                    <option value="Qualquer horário">Qualquer horário</option>
+                                </select>
+                            </div>
+
+                            <div class="quiz-action-wrapper form-submit-wrapper">
+                                <button type="submit" class="btn btn-primary btn-shine" id="btn-submit-form">
+                                    FINALIZAR E AGENDAR PELO WHATSAPP
+                                </button>
+                                
+                                <button type="button" onclick="prevStep()" class="btn-back-step" style="margin-top: 1rem;">
+                                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                                    <span>Voltar para as perguntas</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ==========================================
+                    ETAPA 10: TELA DE CARREGAMENTO / ENVIO
+                    ========================================== -->
+                    <div class="quiz-step text-center" id="step-loading">
+                        <div class="loading-spinner-wrapper">
+                            <div class="spinner-gold"></div>
+                        </div>
+                        <h2 class="quiz-title">Enviando suas respostas...</h2>
+                        <p class="quiz-subtitle">
+                            Em instantes você será direcionada para falar com a equipe da Dra. Mariella.
+                        </p>
+                    </div>
+
+                    <!-- ==========================================
+                    ETAPA 11: TELA DE CONCORDÂNCIA / ERROR FALLBACK
+                    ========================================== -->
+                    <div class="quiz-step text-center" id="step-error-fallback">
+                        <div class="error-icon-wrapper">
+                            <svg class="error-svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                        </div>
+                        <h2 class="quiz-title">Direcionamento para Contato</h2>
+                        <p class="quiz-subtitle" style="color: var(--color-text-muted);">
+                            Não conseguimos registrar suas respostas agora, mas você ainda pode falar com a equipe pelo WhatsApp.
+                        </p>
+                        
+                        <div class="quiz-action-wrapper" style="margin-top: 2rem;">
+                            <a href="#" id="btn-fallback-whatsapp" class="btn btn-primary" target="_blank">
+                                FALAR COM A EQUIPE NO WHATSAPP
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Rodapé Minimalista -->
+        <footer class="quiz-footer">
+            <p><strong>Dra. Mariella Palmeira</strong> &bull; CRM/SP 123.456 &bull; RQE Medicina Estética</p>
+            <p class="footer-note">Este quiz é uma ferramenta de pré-avaliação inicial de caráter educativo e informativo. A indicação de qualquer tratamento glúteo requer consulta presencial e diagnóstico médico individualizado.</p>
+            <p class="footer-copyright">&copy; 2026 Dra. Mariella Palmeira. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts de Configuração e Lógica do Quiz -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
