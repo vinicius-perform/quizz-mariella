@@ -149,10 +149,25 @@ function goToStep(step) {
     if (step >= 1 && step <= 8) {
         renderQuestion(step);
         document.getElementById('step-questions-container').classList.add('active');
+        
+        // Rastreamento das etapas de perguntas no Meta Pixel
+        if (typeof fbq === 'function') {
+            fbq('trackCustom', `Quiz_Pergunta_${step}`);
+        }
     } else if (step === 0) {
         document.getElementById('step-0').classList.add('active');
+        
+        // Rastreamento do início do quiz
+        if (typeof fbq === 'function') {
+            fbq('trackCustom', 'Quiz_Inicio');
+        }
     } else if (step === 9) {
         document.getElementById('step-capture').classList.add('active');
+        
+        // Rastreamento da chegada ao formulário final de dados
+        if (typeof fbq === 'function') {
+            fbq('trackCustom', 'Quiz_Formulario');
+        }
     } else if (step === 10) {
         document.getElementById('step-loading').classList.add('active');
     } else if (step === 11) {
